@@ -5,6 +5,7 @@
         <title>Home</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="./style.css">
     </head>
     <body>
@@ -14,7 +15,10 @@
                 <p>Welcome to our page</p>
             </header>
             <div class="search-container">
-                <input id="search" type="text" placeholder="Search here" autocomplete="off">
+                <div class="search-box">
+                    <input id="search" type="text" placeholder="type a query.." autocomplete="off">
+                    <i id="search-icon" class="material-icons">search</i>
+                </div>
                 <div class="search-suggestions"> </div>
             </div>
             <footer>

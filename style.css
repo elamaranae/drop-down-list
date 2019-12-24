@@ -39,7 +39,19 @@ input[type = text] {
     border: none;
     outline: none;
     border-radius: 10px;
-    background-color: #eee;
+}
+
+.search-box {
+    position: relative;
+}
+
+#search-icon {
+    cursor: default;
+    color: #aaa;
+    position: absolute;
+    right: 5px;
+    top: 8px;
+    user-select: none;
 }
 
 .search-suggestions {
@@ -60,10 +72,6 @@ input[type = text] {
     background-color: #eee;
 }
 
-.search-suggestions > div:hover {
-    background-color: #999;
-}
-
 .suhl {
-    background-color: #999;
+    background-color: #ccc;
 }
