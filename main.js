@@ -71,12 +71,12 @@ search.addEventListener("input", function() {
 
     let htmlstring = ""
     suggestions.forEach( (country, index) => {
-        htmlstring += "<div id='" + index + "' class='sunl' onmouseover='setPos()' onmouseout='resetPos()'>" + country.name + "</div>"
+        htmlstring += "<div id='" + index + "' class='sunl' onclick='go()' onmouseover='setPos()' onmouseout='resetPos()'>" + country.name + "</div>"
     })
     
     // square and restore bottom borders of search box
     // when showing suggestions box
-    if (htmlstring != "") {
+    if (htmlstring != "") { 
         addSearchBorderRadius()
     } else {
         removeSearchBorderRadius()
