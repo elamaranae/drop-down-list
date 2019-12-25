@@ -40,6 +40,25 @@ function removeSearchBorderRadius() {
     search.style.borderBottomRightRadius = "10px"
 }
 
+// handle onclick event
+function go() {
+    search.value = event.target.innerHTML
+    console.log(search.value)
+}
+
+// handle onmouseover event 
+function setPos() {
+    removeClass(su_divs[pos], "suhl")
+    pos = parseInt(event.target.id)
+    addClass(su_divs[pos], "suhl")
+}
+
+// handle onmouseout event
+function resetPos() {
+    removeClass(su_divs[pos], "suhl")
+    pos = len - 1
+}
+
 let search = document.getElementById("search")
 let search_suggestions = document.getElementsByClassName("search-suggestions")[0]
 let search_icon = document.getElementById("search-icon")
@@ -141,22 +160,3 @@ search.addEventListener("blur", function() {
 search_icon.addEventListener("click", function() {
     search.focus()
 })
-
-// handle onclick event
-function go() {
-    search.value = event.target.innerHTML
-    console.log(search.value)
-}
-
-// handle onmouseover event 
-function setPos() {
-    removeClass(su_divs[pos], "suhl")
-    pos = parseInt(event.target.id)
-    addClass(su_divs[pos], "suhl")
-}
-
-// handle onmouseout event
-function resetPos() {
-    removeClass(su_divs[pos], "suhl")
-    pos = len - 1
-}
