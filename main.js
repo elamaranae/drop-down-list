@@ -124,19 +124,29 @@ search.addEventListener("keydown", function(event) {
         pos = len - 1
     } else if (event.keyCode == 13) {                   // enter key
         console.log(search.value)
+        search_suggestions.style.display = "none";          // clicking outside retains highlight state
+        removeSearchBorderRadius()
     }
 })
 
 // remove suggestino box when user clicks outside the search box
 search.addEventListener("blur", function() {
-    search_suggestions.style.display = "none";          // clicking outside retains highlight state
-    removeSearchBorderRadius()
+    setTimeout(() => {
+        search_suggestions.style.display = "none";          // clicking outside retains highlight state
+        removeSearchBorderRadius()
+    }, 100)
 })
 
 // focus search when search icon is clicked
 search_icon.addEventListener("click", function() {
     search.focus()
 })
+
+// handle onclick event
+function go() {
+    search.value = event.target.innerHTML
+    console.log(search.value)
+}
 
 // handle onmouseover event 
 function setPos() {
