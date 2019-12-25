@@ -52,6 +52,8 @@ let pos = len - 1
 // initialise highlight position at last index (non-existing suggestion div)
 // for navigation purposes
 
+search.focus()
+
 search.addEventListener("input", function() {
     let suggestions = []
 
@@ -96,8 +98,8 @@ search.addEventListener("keydown", function(event) {
         event.preventDefault()
         if (search_suggestions.style.display == "none") {
             addSearchBorderRadius()
-            search_suggestions.style.display = "block"
-            return
+            search_suggestions.style.display = "block"  // show block and return if it is
+            return                                      // hidden due to blur
         }
         removeClass(su_divs[pos], "suhl")
         pos = ((pos-1)%len+len)%len
@@ -107,8 +109,8 @@ search.addEventListener("keydown", function(event) {
         event.preventDefault()
         if (search_suggestions.style.display == "none") {
             addSearchBorderRadius()
-            search_suggestions.style.display = "block"
-            return
+            search_suggestions.style.display = "block"  // show block and return if it is
+            return                                      // hidden due to blur
         }
         removeClass(su_divs[pos], "suhl")
         pos = (pos+1)%len
@@ -120,6 +122,8 @@ search.addEventListener("keydown", function(event) {
         search.value = usr_input
         removeClass(su_divs[pos], "suhl")               // escape resets highlight state
         pos = len - 1
+    } else if (event.keyCode == 13) {                   // enter key
+        console.log(search.value)
     }
 })
 
