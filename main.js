@@ -40,21 +40,18 @@ function removeSearchBorderRadius() {
     search.style.borderBottomRightRadius = "10px"
 }
 
-// handle onclick event
-function go() {
+function go() {                                                     // handle onclick event
     search.value = event.target.innerHTML
     console.log(search.value)
 }
 
-// handle onmouseover event 
-function setPos() {
+function setPos() {                                                 // handle onmouseover event 
     removeClass(su_divs[pos], "suhl")
     pos = parseInt(event.target.id)
     addClass(su_divs[pos], "suhl")
 }
 
-// handle onmouseout event
-function resetPos() {
+function resetPos() {                                               // handle onmouseout event
     removeClass(su_divs[pos], "suhl")
     pos = len - 1
 }
@@ -64,14 +61,13 @@ let search_suggestions = document.getElementsByClassName("search-suggestions")[0
 let search_icon = document.getElementById("search-icon")
 
 let usr_input = ""
-let slen = 9                                            // maximum length of list of suggestion divs
-let su_divs = []                                        // intialise empty array of suggestion divs
-let len = 1                                             // length is always one greater than actual length
-let pos = len - 1
-// initialise highlight position at last index (non-existing suggestion div)
-// for navigation purposes
+let slen = 9                                                        // maximum length of list of suggestion divs
+let su_divs = []                                                    // intialise empty array of suggestion divs
+let len = 1                                                         // length is always one greater than actual length
+let pos = len - 1                                                   // initialise highlight position at last index (non-existing suggestion div)
+                                                                    // for navigation purposes
 
-search.focus()
+search.focus()                                                      //focus on search intitally
 
 search.addEventListener("input", function() {
     let suggestions = []
@@ -101,11 +97,11 @@ search.addEventListener("input", function() {
         removeSearchBorderRadius()
     }
 
-    search_suggestions.style.display = "block"          // show block if it is hidden due to blur
-    usr_input = search.value                            // retain state of original user input
+    search_suggestions.style.display = "block"                      // show block if it is hidden due to blur
+    usr_input = search.value                                        // retain state of original user input
     search_suggestions.innerHTML = htmlstring
-    su_divs = document.getElementsByClassName("sunl")   // get array of suggestion divs
-    len = su_divs.length + 1                            // assign len to one more than actual length
+    su_divs = document.getElementsByClassName("sunl")               // get array of suggestion divs
+    len = su_divs.length + 1                                        // assign len to one more than actual length
     pos = len - 1                                       
     // reset position to last index (non-existing suggestion div)
 })
@@ -113,37 +109,37 @@ search.addEventListener("input", function() {
 // handling arrows in onkeydown event as they can't 
 // be handled in oninput event and defaults can be prevented in keydown
 search.addEventListener("keydown", function(event) {
-    if (event.keyCode == 38) {                          // up arrow
+    if (event.keyCode == 38) {                                      // up arrow
         event.preventDefault()
         if (search_suggestions.style.display == "none") {
             addSearchBorderRadius()
-            search_suggestions.style.display = "block"  // show block and return if it is
-            return                                      // hidden due to blur
+            search_suggestions.style.display = "block"              // show block and return if it is
+            return                                                  // hidden due to blur
         }
         removeClass(su_divs[pos], "suhl")
         pos = ((pos-1)%len+len)%len
         search.value = su_divs[pos] ? su_divs[pos].innerHTML : usr_input
         addClass(su_divs[pos], "suhl")
-    } else if (event.keyCode == 40) {                   // down arrow
+    } else if (event.keyCode == 40) {                               // down arrow
         event.preventDefault()
         if (search_suggestions.style.display == "none") {
             addSearchBorderRadius()
-            search_suggestions.style.display = "block"  // show block and return if it is
-            return                                      // hidden due to blur
+            search_suggestions.style.display = "block"              // show block and return if it is
+            return                                                  // hidden due to blur
         }
         removeClass(su_divs[pos], "suhl")
         pos = (pos+1)%len
         search.value = su_divs[pos] ? su_divs[pos].innerHTML : usr_input
         addClass(su_divs[pos], "suhl")
-    } else if (event.keyCode == 27) {                   // escape key
+    } else if (event.keyCode == 27) {                               // escape key
         search_suggestions.style.display = "none";
         removeSearchBorderRadius()
         search.value = usr_input
-        removeClass(su_divs[pos], "suhl")               // escape resets highlight state
+        removeClass(su_divs[pos], "suhl")                           // escape resets highlight state
         pos = len - 1
-    } else if (event.keyCode == 13) {                   // enter key
+    } else if (event.keyCode == 13) {                               // enter key
         console.log(search.value)
-        search_suggestions.style.display = "none";          // clicking outside retains highlight state
+        search_suggestions.style.display = "none";                  // clicking outside retains highlight state
         removeSearchBorderRadius()
     }
 })
@@ -151,7 +147,7 @@ search.addEventListener("keydown", function(event) {
 // remove suggestino box when user clicks outside the search box
 search.addEventListener("blur", function() {
     setTimeout(() => {
-        search_suggestions.style.display = "none";          // clicking outside retains highlight state
+        search_suggestions.style.display = "none";                  // clicking outside retains highlight state
         removeSearchBorderRadius()
     }, 100)
 })
